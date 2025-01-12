@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư tào lao</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        padding: 20px;
+        font-family: "Be Vietnam Pro", sans-serif;
+        background: #e2d5c3;
+        background-image: repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.1) 10px,
+          rgba(255, 255, 255, 0.2) 10px,
+          rgba(255, 255, 255, 0.2) 20px
+        );
+      }
+
+      .letter-container {
+        background: #fff9f0;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #d4c5b9;
+        background-image: repeating-linear-gradient(
+          #fff9f0 0px,
+          #fff9f0 24px,
+          #e7e1d9 25px
+        );
+        background-size: 100% 25px;
+      }
+
+      .letter-header {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(28px, 6vw, 36px);
+        color: #8b4513;
+        text-align: center;
+        padding: 30px 20px;
+        background: rgba(255, 245, 235, 0.9);
+        border-bottom: 2px solid #d4c5b9;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .button-scroll {
+        padding: 20px;
+        background: rgba(255, 245, 235, 0.9);
+      }
+
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .letter-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        background: linear-gradient(145deg, #8b4513, #a65d2e);
+        color: white;
+        cursor: pointer;
+        font-size: clamp(14px, 3vw, 16px);
+        font-family: "Be Vietnam Pro", sans-serif;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+      }
+
+      .letter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        background: linear-gradient(145deg, #a65d2e, #8b4513);
+      }
+
+      .letter-content {
+        padding: 40px;
+        font-size: clamp(16px, 3vw, 18px);
+        line-height: 1.6;
+        color: #5d4037;
+        overflow-y: auto;
+        max-height: 70vh;
+      }
+
+      .character {
+        opacity: 0;
+        animation: fadeIn 0.1s forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      @media (max-width: 600px) {
+        .button-container {
+          gap: 10px; /* Giảm khoảng cách giữa các nút trên màn hình nhỏ */
+        }
+
+        .letter-btn {
+          padding: 10px 15px; /* Giảm padding của nút trên màn hình nhỏ */
+          font-size: 14px; /* Giảm kích thước chữ trên màn hình nhỏ */
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+        .letter-container {
+          border-radius: 10px;
+        }
+        .letter-content {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="letter-container">
+      <div class="letter-header">Gửi mấy chú mấy chị...</div>
+      <div class="button-scroll">
+        <div class="button-container">
+          <button class="letter-btn" onclick="showLetter('nhu')">
+            Gửi Chị Như
+          </button>
+          <button class="letter-btn" onclick="showLetter('hang')">
+            Gửi Chị Hằng
+          </button>
+          <button class="letter-btn" onclick="showLetter('longTien')">
+            Gửi Chú Long & Chị Tiên
+          </button>
+          <button class="letter-btn" onclick="showLetter('dun')">
+            Gửi Chú Dũn
+          </button>
+        </div>
+      </div>
+      <div id="letterContent" class="letter-content"></div>
+    </div>
+
+    <script>
+      const intro = `Chào mấy chú mấy chị h chắc mấy chú mấy chị xong xuôi hết r ha. Mấy bạn trước giờ thấy tui vô tri, mỏ hay khịa, bất cần các thứ rồi mà chắc chưa thấy tui sến bao giờ, nay cũng khó gặp nhau rồi tui xin phép sến bữa hi.
+
+Trước tiên thì tui cám ơn mấy chú mấy chị rất nhiều, tui được đồng hành vs mấy chú mấy chị cũng lâu r, tui thấy rất vui khi được đồng hành với mấy chú mấy chị, thực sự thì nhờ mấy bạn thì mấy năm đại học của tui hắn trở nên trọn vẹn hơn hẳn. Thực sự thì hơi tiếc vì lần cuối được gặp mấy bạn mà tui lại vội quá k kịp chào mấy bạn một cách hẳn hoi với lại trước giờ tui sống cũng hơi khép kín nên thực sự mặc dù học với mấy chú mấy chị miết mà tui chưa thực sự đi giao lưu với mọi người lần mô hết cũng hơi tiếc mấy bạn thông cảm cho tui hi.`;
+
+      const outro = `Cuối cùng thì tui cám ơn mọi người rất là nhiều, dù là sau ni chắc sẽ khó gặp nhau hơn cơ mà khi mô mấy bạn có chi cần giúp Code củng hay chi chi đó thì cứ mạnh dạn nhờ tui nghen , trước mắt là thực tập, sau đi làm cũng rứa, rứa nhỡ tui có chuyện nhờ mấy chú mấy chị thì tui mới tự tin nhờ mấy chú mấy chị được chơ. Ờm thì tui cũng muốn xin lỗi mọi người vì đôi khi tui cũng thiếu sót quá cũng hơi vô tâm với mấy bạn, tui cũng muốn mong là có thể lên 1 buổi ace bạn dì tụ tập bữa chi đó chứ thực sự giờ nghĩ lại thấy vừa buồn vừa tiếc quá. Mặc dù tui k biết là kì sau tui được làm khoá luận hay k hoặc có thể là được tiếp tục học tiếp với mấy bạn ( như này mà viết thư ri thì lên chắc mấy chú mấy chị chọc tui thúi mũi quá) mà kệ i tui cũng muốn viết thư trên để cám ơn mấy bạn rất là nhiều hơi sến nhưng mà thật, mấy bạn cố lên hi tui cũng cố, chắc chắn nhất là hẹn nhau ở ngày tốt nghiệp nghennnn, chúc mọi người thành công.`;
+
+      const content = {
+        nhu: `Chị Như nì. Tui quen chị lâu nhất bầy chị cũng là người giúp đỡ tui nhiều nhất tui cũng k biết nói gì hơn, cám ơn chị nhiều hi, nhờ chị mà mấy năm đại học của tui nó nhẹ nhàng hơn hẳn, từ kiến thức, động lực, tất cả mọi thứ tui rất trân trọng và cám ơn chị rất nhiều, chị rất giỏi rất chăm tui thực sự rất nể chị về điều ni, tui chúc chị trước mắt là thực tập sau là đi làm cố lên nghen chị giỏi lắm tui tin chị gắng vài bữa lễ tốt nghiệp chị gặp tui với cái bằng giỏi hi tui thì chắc k được bằng giỏi nhưng chắc chắn điểm nó cũng phải 5 ăn 5 thua với chị haha`,
+
+        hang: `Chị Hằng hi, bữa ni trở đi chắc khó mà nghe được chị kể phim rồi mấy cái chuyện cười chưa nghe ra chữ mô mà thấy toàn cười của chị, tui cũng khó kiếm môi trường để mà vô tri như khi có mấy cái chuyện tào lao của chị nữa, chị cũng cố gắng lên nghe chứ tui thấy chị như đôi khi cũng đau lưng rồi đỏ, tui thấy chị chăm lên thì chị cũng k thua chi ai mô, gắng lên lấy cái bảng giỏi cho khét.`,
+
+        longTien: `Chú Tiên chị Long 2 bạn cố gắng hỗ trợ lẫn nhau giúp nhau phát triển nghen, tui nghĩ k nên nói trước với cả giờ thì hơi sớm cơ mà nếu sau ni 2 bạn có chi vui thì nhớ báo tui tiếng nghe tui cũng gắng răng đó khi nớ đủ tầm mừng 1-2 chỉ chi đó chơ, cơ mà trước mắt ra trường với cái gpa xịn xịn cho tui rồi làm chi thì làm nghe tui là tui chờ 2 anh chị đỏ`,
+
+        dun: `Chú Dũn hi ,thực sự tui với chú quen nhau cũng chưa lâu lắm nhờ, tui biết là môi trường, động lực của chú khác với tụi tui nên tui cũng k biết nói chi hơn, tui thấy chú rất giỏi tui nên tui chỉ chúc chú thành công theo hướng của chú chọn, sau có chi vui báo vs anh em tiếng hi, chứ tui với chú ăn rồi rủ nhậu rủ ôm nhau ngủ miết mà toàn 2 thằng phét vs nhau k chứ chưa có chi hết haha`,
+      };
+
+      async function typeText(text, element) {
+        const paragraph = document.createElement("p");
+        paragraph.style.marginBottom = "20px";
+        element.appendChild(paragraph);
+
+        for (let char of text) {
+          const span = document.createElement("span");
+          span.className = "character";
+          span.textContent = char;
+          paragraph.appendChild(span);
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+
+      async function showLetter(person) {
+        const letterContent = document.getElementById("letterContent");
+        letterContent.innerHTML = "";
+
+        const allText = [
+          ...intro.split("\n\n"),
+          ...content[person].split("\n\n"),
+          ...outro.split("\n\n"),
+        ];
+
+        for (let text of allText) {
+          await typeText(text, letterContent);
+        }
+      }
+    </script>
+  </body>
+</html>
