@@ -70,7 +70,7 @@
       }
 
       .action-button {
-        margin-top: 220px;
+        margin-top: 20px;
         padding: 12px 24px;
         background: #ff4500;
         color: white;
@@ -276,12 +276,13 @@
           // Hide button
           actionButton.classList.add("hide");
 
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await new Promise((resolve) => setTimeout(resolve, 1500));
 
           // Move to center
-          iconWrapper.classList.add("move-to-center");
 
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          // iconWrapper.classList.add("move-to-center");
+
+          // await new Promise((resolve) => setTimeout(resolve, 2000));
 
           // Zoom out effect
           mainContent.classList.add("zoom-out");
