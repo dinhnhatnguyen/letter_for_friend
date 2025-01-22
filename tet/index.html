@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Year End Party Invitation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
@@ -17,7 +21,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: Arial, sans-serif;
+        font-family: "Montserrat", sans-serif;
       }
 
       .container {
@@ -71,18 +75,23 @@
 
       .action-button {
         margin-top: 20px;
-        padding: 12px 24px;
-        background: #ff4500;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #d4145a 0%, #fbb03b 100%);
         color: white;
-        border: none;
-        border-radius: 20px;
+        border: 2px solid #ffd700;
+        border-radius: 25px;
         cursor: pointer;
+        font-family: "Montserrat", sans-serif;
         font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         transition: all 0.3s ease;
         z-index: 3;
         position: relative;
         opacity: 1;
         visibility: visible;
+        box-shadow: 0 4px 15px rgba(212, 20, 90, 0.3);
       }
 
       .action-button.hide {
@@ -92,7 +101,9 @@
       }
 
       .action-button:hover {
-        transform: scale(1.1);
+        background: linear-gradient(135deg, #fbb03b 0%, #d4145a 100%);
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(212, 20, 90, 0.4);
       }
 
       .popup {
@@ -118,7 +129,7 @@
       }
 
       .popup-content {
-        background: url("./image/card_background.jpg") center/cover no-repeat;
+        background: linear-gradient(135deg, #8e0e00 0%, #1f1c18 100%);
         padding: 30px;
         border-radius: 20px;
         text-align: center;
@@ -130,6 +141,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        border: 3px solid #ffd700;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
       }
 
       .cloud {
@@ -211,15 +224,44 @@
       }
 
       h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8em;
         color: #ffd700;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 215, 0, 0.4);
       }
 
-      p {
-        margin-bottom: 15px;
-        line-height: 1.6;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      .popup-content p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.1em;
+        color: #fff8dc;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      }
+
+      .popup-content p:last-child {
+        color: #ffd700;
+        font-weight: 600;
+        font-size: 1.2em;
+        margin-top: 20px;
+      }
+
+      .emoji-wrapper {
+        display: inline-block;
+        margin: 0 5px;
+        animation: shine 2s infinite;
+      }
+
+      @keyframes shine {
+        0%,
+        100% {
+          text-shadow: 0 0 10px #ffd700;
+        }
+        50% {
+          text-shadow: 0 0 20px #ffd700, 0 0 30px #ffa500;
+        }
       }
     </style>
   </head>
@@ -235,16 +277,17 @@
 
       <div class="popup">
         <div class="popup-content">
-          <!-- Decorative clouds -->
           <img src="./icon/clound.png" alt="Cloud" class="cloud cloud-1" />
           <img src="./icon/clound.png" alt="Cloud" class="cloud cloud-2" />
           <img src="./icon/clound.png" alt="Cloud" class="cloud cloud-3" />
           <img src="./icon/clound.png" alt="Cloud" class="cloud cloud-4" />
-
-          <!-- Snake decoration -->
           <img src="./icon/snake.png" alt="Snake" class="popup-snake" />
 
-          <h1>🎉 Year End Party 🎉</h1>
+          <h1>
+            Year End Party
+            <!-- <span class="emoji-wrapper">🎉</span> 
+            <span class="emoji-wrapper">🎉</span> -->
+          </h1>
           <p>Thân mời bạn đến dự buổi tiệc Year End Party!</p>
           <p>🕢 Thời gian: 19:30</p>
           <p>📍 Địa điểm: Hương Đồng Quán</p>
@@ -264,44 +307,30 @@
         const popupContent = document.querySelector(".popup-content");
 
         actionButton.addEventListener("click", async function () {
-          // Bounce animation
           mainsnake.classList.add("bounce");
 
           await new Promise((resolve) => setTimeout(resolve, 1000));
           mainsnake.classList.remove("bounce");
 
-          // Show icon-frame
           iconFrame.style.transform = "translate(-50%, -50%) scale(1)";
-
-          // Hide button
           actionButton.classList.add("hide");
 
           await new Promise((resolve) => setTimeout(resolve, 1500));
-
-          // Move to center
-
-          // iconWrapper.classList.add("move-to-center");
-
-          // await new Promise((resolve) => setTimeout(resolve, 2000));
-
-          // Zoom out effect
           mainContent.classList.add("zoom-out");
 
           await new Promise((resolve) => setTimeout(resolve, 1000));
           popup.classList.add("show");
         });
 
-        // Handle closing popup when clicking outside
         popup.addEventListener("click", function (event) {
           if (!popupContent.contains(event.target)) {
             popup.classList.remove("show");
 
-            // Reset animations
             setTimeout(() => {
               mainContent.classList.remove("zoom-out");
               iconWrapper.classList.remove("move-to-center");
               iconFrame.style.transform = "translate(-50%, -50%) scale(0)";
-              actionButton.classList.remove("hide"); // Show button again when resetting
+              actionButton.classList.remove("hide");
             }, 300);
           }
         });
